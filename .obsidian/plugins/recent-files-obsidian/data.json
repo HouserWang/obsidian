@@ -5,6 +5,18 @@
       "path": "电商下单/EventStorming/Order_Checkout_Storming.md"
     },
     {
+      "basename": "OrderAggregate",
+      "path": "电商下单/Aggregates/OrderAggregate.md"
+    },
+    {
+      "basename": "未命名",
+      "path": "未命名.canvas"
+    },
+    {
+      "basename": "Order",
+      "path": "Order.md"
+    },
+    {
       "basename": "2025-12-11",
       "path": "2025-12-11.md"
     },
