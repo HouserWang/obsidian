@@ -5,36 +5,24 @@
       "path": "未命名.canvas"
     },
     {
-      "basename": "数据复制和数据分片",
-      "path": "数据复制和数据分片.md"
-    },
-    {
-      "basename": "分布式杂技",
-      "path": "分布式杂技.md"
-    },
-    {
-      "basename": "知识",
-      "path": "知识.md"
+      "basename": "OrderAggregate",
+      "path": "电商下单/Aggregates/OrderAggregate.md"
     },
     {
       "basename": "Order_Checkout_Storming",
       "path": "电商下单/EventStorming/Order_Checkout_Storming.md"
     },
     {
-      "basename": "截屏2025-12-14 11.06.30 1",
-      "path": "附件/截屏2025-12-14 11.06.30 1.png"
-    },
-    {
-      "basename": "截屏2025-12-14 11.06.30",
-      "path": "附件/截屏2025-12-14 11.06.30.png"
-    },
-    {
-      "basename": "OrderAggregate",
-      "path": "电商下单/Aggregates/OrderAggregate.md"
-    },
-    {
       "basename": "event-storming",
       "path": "event-storming.excalidrawlib"
+    },
+    {
+      "basename": "数据复制和数据分片",
+      "path": "数据复制和数据分片.md"
+    },
+    {
+      "basename": "分布式杂技",
+      "path": "分布式杂技.md"
     }
   ],
   "omittedPaths": [],
