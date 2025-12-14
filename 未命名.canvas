@@ -1,7 +1,8 @@
 {
 	"nodes":[
-		{"id":"f533fa7654c66d98","x":-40,"y":260,"width":250,"height":60,"type":"text","text":""},
-		{"id":"56db5a61fc98740a","x":-317,"y":-124,"width":377,"height":164,"color":"1","type":"file","file":"数据复制和数据分片.md"}
+		{"id":"f533fa7654c66d98","type":"text","text":"","x":-40,"y":260,"width":250,"height":60},
+		{"id":"56db5a61fc98740a","type":"file","file":"数据复制和数据分片.md","x":-317,"y":-124,"width":377,"height":164,"color":"1"},
+		{"id":"e0ad984cc449242c","x":-57,"y":200,"width":142,"height":50,"color":"1","type":"text","text":""}
 	],
 	"edges":[]
 }
