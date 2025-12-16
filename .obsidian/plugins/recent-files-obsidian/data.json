@@ -1,12 +1,16 @@
 {
   "recentFiles": [
     {
-      "basename": "未命名 1",
-      "path": "brag document/未命名 1.md"
+      "basename": "Java Agent 监控体系",
+      "path": "brag document/Java Agent 监控体系.md"
     },
     {
-      "basename": "未命名",
-      "path": "brag document/未命名.md"
+      "basename": "Redis写请求全链路与 IO 模型",
+      "path": "brag document/Redis写请求全链路与 IO 模型.md"
+    },
+    {
+      "basename": "redis读写微观全流程",
+      "path": "分布式架构/redis读写微观全流程.md"
     },
     {
       "basename": "TP_Tech_Brag_Doc",
@@ -19,10 +23,6 @@
     {
       "basename": "未命名",
       "path": "未命名.md"
-    },
-    {
-      "basename": "redis读写微观全流程",
-      "path": "分布式架构/redis读写微观全流程.md"
     },
     {
       "basename": "中心化控制架构与smart client架构",
