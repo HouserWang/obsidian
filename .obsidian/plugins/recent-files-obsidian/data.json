@@ -1,12 +1,12 @@
 {
   "recentFiles": [
     {
-      "basename": "redis读写微观全流程",
-      "path": "分布式架构/redis读写微观全流程.md"
-    },
-    {
       "basename": "中心化控制架构与smart client架构",
       "path": "分布式架构/中心化控制架构与smart client架构.md"
+    },
+    {
+      "basename": "redis读写微观全流程",
+      "path": "分布式架构/redis读写微观全流程.md"
     },
     {
       "basename": "redis的网络架构和cluster原理",

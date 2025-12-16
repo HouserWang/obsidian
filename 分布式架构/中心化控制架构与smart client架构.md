@@ -21,7 +21,7 @@
 ### 4. Redis Sentinel (哨兵)
 *   **【架构模式】**：**强中心化控制 (Strong Centralized Control) + 客户端发现 (Client-Side Discovery)**。
 *   **【控制面：元数据管理】**：Sentinel 节点间通过 Raft 选举出 **Sentinel Leader**。Leader 负责监控 Redis Master 状态，并维护当前合法的 Master 地址（元数据）。
-*   **【数据面：路由寻址】**：客户端 SDK 连接 Sentinel 集群，**订阅**或查询 Master 地址变更。获取地址后，客户端**直连** Redis Master 进行操作。
+*   **【数据面：没有路由寻址，只有服务发现】**：客户端 SDK 连接 Sentinel 集群，**订阅**或查询 Master 地址变更。获取地址后，客户端**直连** Redis Master 进行操作。客户端只存master的ip端口。
 *   **【一致性与故障转移】**：采用 **异步复制 (Async Replication)**，无 ISR 机制。故障转移由 Sentinel Leader **指定**：判定 Master 下线后，按照规则（优先级/偏移量）从 Slave 中提拔新 Master，并通知客户端。
 
 ### 5. Elasticsearch
