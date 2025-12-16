@@ -1,12 +1,48 @@
 {
   "recentFiles": [
     {
-      "basename": "日志复制",
-      "path": "分布式架构/日志复制.md"
+      "basename": "reactor模型",
+      "path": "分布式架构/reactor模型.md"
+    },
+    {
+      "basename": "实战手册",
+      "path": "分布式架构/实战手册.md"
+    },
+    {
+      "basename": "redis的网络架构和cluster原理",
+      "path": "分布式架构/redis的网络架构和cluster原理.md"
+    },
+    {
+      "basename": "netty",
+      "path": "分布式架构/netty.md"
+    },
+    {
+      "basename": "中心化控制架构与smart client架构",
+      "path": "分布式架构/中心化控制架构与smart client架构.md"
+    },
+    {
+      "basename": "中间件的读写流程",
+      "path": "分布式架构/中间件的读写流程.md"
     },
     {
       "basename": "数据复制和数据分片",
       "path": "分布式架构/数据复制和数据分片.md"
+    },
+    {
+      "basename": "Order",
+      "path": "Order.md"
+    },
+    {
+      "basename": "日志复制",
+      "path": "分布式架构/日志复制.md"
+    },
+    {
+      "basename": "零拷贝",
+      "path": "分布式架构/零拷贝.md"
+    },
+    {
+      "basename": "分布式杂技",
+      "path": "分布式架构/分布式杂技.md"
     },
     {
       "basename": "头脑风暴",
@@ -17,20 +53,8 @@
       "path": "未命名.canvas"
     },
     {
-      "basename": "中间件的读写流程",
-      "path": "分布式架构/中间件的读写流程.md"
-    },
-    {
-      "basename": "中心化控制架构与smart client架构",
-      "path": "分布式架构/中心化控制架构与smart client架构.md"
-    },
-    {
       "basename": "英语常见派生词",
       "path": "英语常见派生词.md"
-    },
-    {
-      "basename": "redis及架构相关",
-      "path": "分布式架构/redis及架构相关.md"
     },
     {
       "basename": "OrderAggregate",
@@ -43,10 +67,6 @@
     {
       "basename": "event-storming",
       "path": "event-storming.excalidrawlib"
-    },
-    {
-      "basename": "分布式杂技",
-      "path": "分布式架构/分布式杂技.md"
     }
   ],
   "omittedPaths": [],
