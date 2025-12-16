@@ -1,0 +1,44 @@
+---
+created: <% tp.file.creation_date("YYYY-MM-DD HH:mm") %>
+tags:
+  - brag-doc
+  - knowledge-block
+category: <% tp.system.suggester(["中间件原理", "架构设计(DDD)", "性能优化", "线上排查", "工程效能"], ["Middleware", "Architecture", "Performance", "Troubleshooting", "Engineering"]) %>
+tech_stack: []
+status: 🟢 掌握
+---
+
+# 🚀 技术沉淀: <% tp.file.cursor(1) %>
+
+## 1. 第一性原理 (The "Why" & "How")
+> 💡 **核心机制拆解**：跳出 API，深入 OS 内核、网络模型或算法本质。
+- **底层机制**：(例如：PageCache, Zero-Copy, Gossip, HashSlot, 倒排索引...)
+- **设计哲学**：(例如：AP vs CP, 读写分离, 空间换时间...)
+- **关键细节**：
+    - <% tp.file.cursor(2) %>
+
+## 2. 横向对比 (The Trade-off)
+> ⚖️ **架构师视角**：没有最好的技术，只有最适合的权衡。
+| 维度 | 当前技术 | 对标技术 (e.g. Kafka/Redis/ZK) |
+| :--- | :--- | :--- |
+| **一致性** |  |  |
+| **IO 模型** |  |  |
+| **适用场景** |  |  |
+- **核心差异点**：<% tp.file.cursor(3) %>
+
+## 3. B 端业务落地 (The Value)
+> 💼 **场景化应用**：在非高并发场景下，这个技术能解决什么痛点？(数据一致性、可维护性、系统解耦)
+- **痛点描述**：
+- **解决方案**：
+- **收益/价值**：
+
+## 4. 简历话术预案 (Resume Snippet)
+> 📝 **降维打击**：明年写简历时，直接复制这一段。
+> *格式建议：掌握 [技术原理]，在 [业务场景] 中，通过 [技术手段]，解决了 [什么问题/提升了什么指标]。*
+
+- **话术 1 (侧重原理)**：深入理解 **<% tp.file.cursor(4) %>** 原理，...
+- **话术 2 (侧重实战)**：在 **...** 业务中，设计了 **...** 方案，解决了 **...** 问题。
+
+---
+## 🔗 关联知识
+- [[相关概念]]
