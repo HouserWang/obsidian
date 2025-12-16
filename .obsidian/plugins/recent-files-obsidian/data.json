@@ -1,6 +1,18 @@
 {
   "recentFiles": [
     {
+      "basename": "数据复制和数据分片",
+      "path": "数据复制和数据分片.md"
+    },
+    {
+      "basename": "日志复制",
+      "path": "日志复制.md"
+    },
+    {
+      "basename": "英语常见派生词",
+      "path": "英语常见派生词.md"
+    },
+    {
       "basename": "中间件的读写流程",
       "path": "中间件的读写流程.md"
     },
@@ -27,10 +39,6 @@
     {
       "basename": "event-storming",
       "path": "event-storming.excalidrawlib"
-    },
-    {
-      "basename": "数据复制和数据分片",
-      "path": "数据复制和数据分片.md"
     },
     {
       "basename": "分布式杂技",
