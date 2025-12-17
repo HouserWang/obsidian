@@ -1,8 +1,24 @@
 {
   "recentFiles": [
     {
-      "basename": "Java Agent 监控体系",
-      "path": "brag document/Java Agent 监控体系.md"
+      "basename": "分布式杂技",
+      "path": "分布式架构/分布式杂技.md"
+    },
+    {
+      "basename": "redis读写请求全链路",
+      "path": "brag document/redis读写请求全链路.md"
+    },
+    {
+      "basename": "**WAL (Write-Ahead Logging，预写式日志)**",
+      "path": "**WAL (Write-Ahead Logging，预写式日志)**.md"
+    },
+    {
+      "basename": "**Append-Only Log (仅追加日志)**",
+      "path": "**Append-Only Log (仅追加日志)**.md"
+    },
+    {
+      "basename": "reactor模型",
+      "path": "分布式架构/reactor模型.md"
     },
     {
       "basename": "Redis写请求全链路与 IO 模型",
@@ -13,12 +29,16 @@
       "path": "分布式架构/redis读写微观全流程.md"
     },
     {
+      "basename": "Java Agent 监控体系",
+      "path": "brag document/Java Agent 监控体系.md"
+    },
+    {
       "basename": "TP_Tech_Brag_Doc",
       "path": "template/TP_Tech_Brag_Doc.md"
     },
     {
-      "basename": "reactor模型",
-      "path": "分布式架构/reactor模型.md"
+      "basename": "能力错觉",
+      "path": "能力错觉.md"
     },
     {
       "basename": "未命名",
@@ -59,10 +79,6 @@
     {
       "basename": "零拷贝",
       "path": "分布式架构/零拷贝.md"
-    },
-    {
-      "basename": "分布式杂技",
-      "path": "分布式架构/分布式杂技.md"
     },
     {
       "basename": "头脑风暴",
