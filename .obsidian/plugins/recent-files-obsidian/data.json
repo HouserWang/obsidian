@@ -5,12 +5,16 @@
       "path": "brag document/redis读写brag.md"
     },
     {
-      "basename": "Redis写请求全链路与 IO 模型",
-      "path": "brag document/Redis写请求全链路与 IO 模型.md"
+      "basename": "Java Agent 监控体系",
+      "path": "brag document/Java Agent 监控体系.md"
     },
     {
       "basename": "redis读写微观全流程",
       "path": "分布式架构/redis读写微观全流程.md"
+    },
+    {
+      "basename": "redis的网络架构和cluster原理",
+      "path": "分布式架构/redis的网络架构和cluster原理.md"
     },
     {
       "basename": "mysql读写详细流程",
@@ -41,10 +45,6 @@
       "path": "分布式架构/reactor模型.md"
     },
     {
-      "basename": "Java Agent 监控体系",
-      "path": "brag document/Java Agent 监控体系.md"
-    },
-    {
       "basename": "TP_Tech_Brag_Doc",
       "path": "template/TP_Tech_Brag_Doc.md"
     },
@@ -55,10 +55,6 @@
     {
       "basename": "中心化控制架构与smart client架构",
       "path": "分布式架构/中心化控制架构与smart client架构.md"
-    },
-    {
-      "basename": "redis的网络架构和cluster原理",
-      "path": "分布式架构/redis的网络架构和cluster原理.md"
     },
     {
       "basename": "实战手册",
