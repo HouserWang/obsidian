@@ -1,16 +1,20 @@
 {
   "recentFiles": [
     {
-      "basename": "mysql读写详细流程",
-      "path": "分布式架构/mysql读写详细流程.md"
+      "basename": "redis读写请求全链路",
+      "path": "brag document/redis读写请求全链路.md"
+    },
+    {
+      "basename": "Redis写请求全链路与 IO 模型",
+      "path": "brag document/Redis写请求全链路与 IO 模型.md"
     },
     {
       "basename": "redis读写微观全流程",
       "path": "分布式架构/redis读写微观全流程.md"
     },
     {
-      "basename": "redis读写请求全链路",
-      "path": "brag document/redis读写请求全链路.md"
+      "basename": "mysql读写详细流程",
+      "path": "分布式架构/mysql读写详细流程.md"
     },
     {
       "basename": "分布式存储核心概念辨析手册",
@@ -35,10 +39,6 @@
     {
       "basename": "reactor模型",
       "path": "分布式架构/reactor模型.md"
-    },
-    {
-      "basename": "Redis写请求全链路与 IO 模型",
-      "path": "brag document/Redis写请求全链路与 IO 模型.md"
     },
     {
       "basename": "Java Agent 监控体系",
