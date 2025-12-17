@@ -1,20 +1,24 @@
 {
   "recentFiles": [
     {
-      "basename": "分布式杂技",
-      "path": "分布式架构/分布式杂技.md"
+      "basename": "分布式设计术语",
+      "path": "分布式架构/分布式设计术语.md"
     },
     {
       "basename": "redis读写请求全链路",
       "path": "brag document/redis读写请求全链路.md"
     },
     {
-      "basename": "**WAL (Write-Ahead Logging，预写式日志)**",
-      "path": "**WAL (Write-Ahead Logging，预写式日志)**.md"
+      "basename": "英语常见派生词",
+      "path": "英语常见派生词.md"
     },
     {
-      "basename": "**Append-Only Log (仅追加日志)**",
-      "path": "**Append-Only Log (仅追加日志)**.md"
+      "basename": "未命名",
+      "path": "未命名.canvas"
+    },
+    {
+      "basename": "头脑风暴",
+      "path": "头脑风暴.md"
     },
     {
       "basename": "reactor模型",
@@ -41,10 +45,6 @@
       "path": "能力错觉.md"
     },
     {
-      "basename": "未命名",
-      "path": "未命名.md"
-    },
-    {
       "basename": "中心化控制架构与smart client架构",
       "path": "分布式架构/中心化控制架构与smart client架构.md"
     },
@@ -69,28 +69,12 @@
       "path": "分布式架构/数据复制和数据分片.md"
     },
     {
-      "basename": "Order",
-      "path": "Order.md"
-    },
-    {
       "basename": "日志复制",
       "path": "分布式架构/日志复制.md"
     },
     {
       "basename": "零拷贝",
       "path": "分布式架构/零拷贝.md"
-    },
-    {
-      "basename": "头脑风暴",
-      "path": "头脑风暴.md"
-    },
-    {
-      "basename": "未命名",
-      "path": "未命名.canvas"
-    },
-    {
-      "basename": "英语常见派生词",
-      "path": "英语常见派生词.md"
     },
     {
       "basename": "OrderAggregate",

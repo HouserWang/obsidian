@@ -16,7 +16,7 @@ status: 🟢 掌握
 > 💡 **核心机制拆解**：
 
 - **底层机制**：smart redis,单reactor/多线程网络io，同步aof buf和pagecache/异步刷盘，同步slave buf/异步复制replica log。
-- **设计哲学**：(例如：[[reactor模型]]，[[aol]],[[**Append-Only Log (仅追加日志)**]])
+- **设计哲学**：[[reactor模型]]，**Append-Only Log (仅追加日志)**, WAL，#def-wal 
 - **关键细节**：
     - ...
 
