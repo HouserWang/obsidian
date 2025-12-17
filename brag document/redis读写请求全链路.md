@@ -10,15 +10,18 @@ tech_stack:
 status: 🟢 掌握
 ---
 
-# 🚀 技术沉淀: redis读请求全链路
+# 🚀 技术沉淀: redis读写请求全链路
 
 ## 1. 第一性原理 (The "Why" & "How")
 > 💡 **核心机制拆解**：
 
-- **底层机制**：smart redis,单reactor/多线程网络io，同步aof buf和pagecache/异步刷盘，同步slave buf/异步复制replica log。
-- **设计哲学**：[[reactor模型]]，**Append-Only Log (仅追加日志)**, WAL，#def-wal 
+- **底层机制**：smart redis、单reactor/多线程网络io、同步aof buf和pagecache/异步刷盘、同步slave buf/异步复制replica log
+- **设计哲学**：[[reactor模型]]、append-Only log、异步刷盘与异步复制
 - **关键细节**：
-    - ...
+    - 客户端连接3次握手->redis主线程event loop epoll_wait监控到accept事件->epoll_ctl注册一个新的read事件
+    - 数据到达网卡->epoll_wait唤醒主线程->主线程分配给io thread->io thread读取数据，从内核buffer复制到input buffer，解析数据
+    - 客户端发送数据->触发读事件->redis网络io线程池拿出子线程来读取数据->子线程对数据进行解码编码操作解析出该redis命令
+    - 根据wal模式先写入aof buf和pagecache，再写入
 
 ## 2. 横向对比 (The Trade-off)
 > ⚖️ **架构师视角**：没有最好的技术，只有最适合的权衡。
