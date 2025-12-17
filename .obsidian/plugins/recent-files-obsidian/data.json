@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "mysql读写详细流程",
+      "path": "分布式架构/mysql读写详细流程.md"
+    },
+    {
       "basename": "redis读写微观全流程",
       "path": "分布式架构/redis读写微观全流程.md"
     },
