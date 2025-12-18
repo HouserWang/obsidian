@@ -17,6 +17,10 @@
     {
       "folder": "brag document",
       "template": "template/TP_Tech_Brag_Doc.md"
+    },
+    {
+      "folder": "日记",
+      "template": "template/DailyTemplate.md"
     }
   ],
   "enable_file_templates": false,

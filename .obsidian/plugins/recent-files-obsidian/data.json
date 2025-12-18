@@ -1,6 +1,18 @@
 {
   "recentFiles": [
     {
+      "basename": "分布式存储核心概念辨析手册",
+      "path": "分布式架构/分布式存储核心概念辨析手册.md"
+    },
+    {
+      "basename": "读rocketMq源码",
+      "path": "读rocketMq源码.md"
+    },
+    {
+      "basename": "DailyTemplate",
+      "path": "template/DailyTemplate.md"
+    },
+    {
       "basename": "英语常见派生词",
       "path": "实战/英语常见派生词.md"
     },
@@ -19,14 +31,6 @@
     {
       "basename": "mvc转ddd",
       "path": "实战/mvc转ddd.md"
-    },
-    {
-      "basename": "读rocketMq源码",
-      "path": "读rocketMq源码.md"
-    },
-    {
-      "basename": "分布式存储核心概念辨析手册",
-      "path": "分布式架构/分布式存储核心概念辨析手册.md"
     },
     {
       "basename": "分布式设计术语",
