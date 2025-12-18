@@ -1,12 +1,24 @@
 {
   "recentFiles": [
     {
-      "basename": "mvc转ddd",
-      "path": "实战/mvc转ddd.md"
+      "basename": "英语常见派生词",
+      "path": "实战/英语常见派生词.md"
     },
     {
       "basename": "工作中使用ai",
-      "path": "工作中使用ai.md"
+      "path": "实战/工作中使用ai.md"
+    },
+    {
+      "basename": "实战手册",
+      "path": "实战/实战手册.md"
+    },
+    {
+      "basename": "ddd测试",
+      "path": "实战/ddd测试.md"
+    },
+    {
+      "basename": "mvc转ddd",
+      "path": "实战/mvc转ddd.md"
     },
     {
       "basename": "读rocketMq源码",
@@ -33,10 +45,6 @@
       "path": "未命名.canvas"
     },
     {
-      "basename": "英语常见派生词",
-      "path": "英语常见派生词.md"
-    },
-    {
       "basename": "能力错觉",
       "path": "能力错觉.md"
     },
@@ -47,10 +55,6 @@
     {
       "basename": "日志复制",
       "path": "分布式架构/日志复制.md"
-    },
-    {
-      "basename": "实战手册",
-      "path": "分布式架构/实战手册.md"
     },
     {
       "basename": "数据复制和数据分片",
