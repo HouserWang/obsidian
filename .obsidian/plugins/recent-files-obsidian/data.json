@@ -1,8 +1,40 @@
 {
   "recentFiles": [
     {
+      "basename": "数据复制和数据分片",
+      "path": "分布式架构/数据复制和数据分片.md"
+    },
+    {
+      "basename": "日志复制",
+      "path": "分布式架构/日志复制.md"
+    },
+    {
+      "basename": "零拷贝",
+      "path": "分布式架构/零拷贝.md"
+    },
+    {
+      "basename": "分布式设计术语",
+      "path": "分布式架构/分布式设计术语.md"
+    },
+    {
       "basename": "分布式存储核心概念辨析手册",
       "path": "分布式架构/分布式存储核心概念辨析手册.md"
+    },
+    {
+      "basename": "中间件的读写流程",
+      "path": "分布式架构/中间件的读写流程.md"
+    },
+    {
+      "basename": "中心化控制架构与smart client架构",
+      "path": "分布式架构/中心化控制架构与smart client架构.md"
+    },
+    {
+      "basename": "mysql读写详细流程",
+      "path": "分布式架构/mysql读写详细流程.md"
+    },
+    {
+      "basename": "RocketMq持久化-commitlog中的优化",
+      "path": "brag document/RocketMq持久化-commitlog中的优化.md"
     },
     {
       "basename": "读rocketMq源码",
@@ -33,10 +65,6 @@
       "path": "实战/mvc转ddd.md"
     },
     {
-      "basename": "分布式设计术语",
-      "path": "分布式架构/分布式设计术语.md"
-    },
-    {
       "basename": "netty",
       "path": "分布式架构/netty.md"
     },
@@ -53,26 +81,6 @@
       "path": "能力错觉.md"
     },
     {
-      "basename": "零拷贝",
-      "path": "分布式架构/零拷贝.md"
-    },
-    {
-      "basename": "日志复制",
-      "path": "分布式架构/日志复制.md"
-    },
-    {
-      "basename": "数据复制和数据分片",
-      "path": "分布式架构/数据复制和数据分片.md"
-    },
-    {
-      "basename": "中间件的读写流程",
-      "path": "分布式架构/中间件的读写流程.md"
-    },
-    {
-      "basename": "中心化控制架构与smart client架构",
-      "path": "分布式架构/中心化控制架构与smart client架构.md"
-    },
-    {
       "basename": "redis读写brag",
       "path": "brag document/redis读写brag.md"
     },
@@ -87,10 +95,6 @@
     {
       "basename": "redis的网络架构和cluster原理",
       "path": "分布式架构/redis的网络架构和cluster原理.md"
-    },
-    {
-      "basename": "mysql读写详细流程",
-      "path": "分布式架构/mysql读写详细流程.md"
     },
     {
       "basename": "reactor模型",
