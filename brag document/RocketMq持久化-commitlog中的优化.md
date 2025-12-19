@@ -10,15 +10,15 @@ tech_stack:
 status: 🟢 掌握
 ---
 
-# 🚀 技术沉淀: 在这里输入标题
+# 🚀 技术沉淀: commitlog
 
 ## 1. 第一性原理 (The "Why" & "How")
 > 💡 **核心机制拆解**：跳出 API，深入 OS 内核、网络模型或算法本质。
 
-- **底层机制**：(例如：PageCache, Zero-Copy, Gossip, HashSlot, 倒排索引...)
-- **设计哲学**：(例如：AP vs CP, 读写分离, 空间换时间...)
+- **底层机制**：PageCache，mmap，顺序写
+- **设计哲学**：append-Only log，二级索引，内存预热和预分配
 - **关键细节**：
-    - ...
+    - producer send message->broker收到数据，进行组装后，通过mmap写入pageCache，
 
 ## 2. 横向对比 (The Trade-off)
 > ⚖️ **架构师视角**：没有最好的技术，只有最适合的权衡。

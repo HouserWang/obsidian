@@ -1,6 +1,14 @@
 {
   "recentFiles": [
     {
+      "basename": "RocketMq持久化-commitlog中的优化",
+      "path": "brag document/RocketMq持久化-commitlog中的优化.md"
+    },
+    {
+      "basename": "redis读写brag",
+      "path": "brag document/redis读写brag.md"
+    },
+    {
       "basename": "数据复制和数据分片",
       "path": "分布式架构/数据复制和数据分片.md"
     },
@@ -31,10 +39,6 @@
     {
       "basename": "mysql读写详细流程",
       "path": "分布式架构/mysql读写详细流程.md"
-    },
-    {
-      "basename": "RocketMq持久化-commitlog中的优化",
-      "path": "brag document/RocketMq持久化-commitlog中的优化.md"
     },
     {
       "basename": "读rocketMq源码",
@@ -79,10 +83,6 @@
     {
       "basename": "能力错觉",
       "path": "能力错觉.md"
-    },
-    {
-      "basename": "redis读写brag",
-      "path": "brag document/redis读写brag.md"
     },
     {
       "basename": "Java Agent 监控体系",
