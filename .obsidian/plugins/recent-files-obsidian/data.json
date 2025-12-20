@@ -1,6 +1,14 @@
 {
   "recentFiles": [
     {
+      "basename": "prompt",
+      "path": "prompt.md"
+    },
+    {
+      "basename": "读rocketMq源码",
+      "path": "读rocketMq源码.md"
+    },
+    {
       "basename": "Buffering (缓冲)& Pooling (池化)",
       "path": "本质技术/Buffering (缓冲)& Pooling (池化).md"
     },
@@ -43,10 +51,6 @@
     {
       "basename": "mysql读写详细流程",
       "path": "分布式架构/mysql读写详细流程.md"
-    },
-    {
-      "basename": "读rocketMq源码",
-      "path": "读rocketMq源码.md"
     },
     {
       "basename": "DailyTemplate",
