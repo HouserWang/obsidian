@@ -1,12 +1,20 @@
 {
   "recentFiles": [
     {
-      "basename": "RocketMq注册中心-nameService的设计",
-      "path": "brag document/RocketMq注册中心-nameService的设计.md"
+      "basename": "RocketMq持久化-commitlog中的优化",
+      "path": "brag document/RocketMq持久化-commitlog中的优化.md"
     },
     {
       "basename": "未命名",
       "path": "未命名.md"
+    },
+    {
+      "basename": "TP_Tech_Brag_Doc",
+      "path": "template/TP_Tech_Brag_Doc.md"
+    },
+    {
+      "basename": "RocketMq注册中心-nameService的设计",
+      "path": "brag document/RocketMq注册中心-nameService的设计.md"
     },
     {
       "basename": "本质词汇表",
@@ -15,10 +23,6 @@
     {
       "basename": "mysql读写详细流程",
       "path": "分布式架构/mysql读写详细流程.md"
-    },
-    {
-      "basename": "RocketMq持久化-commitlog中的优化",
-      "path": "brag document/RocketMq持久化-commitlog中的优化.md"
     },
     {
       "basename": "读rocketMq源码",
@@ -123,10 +127,6 @@
     {
       "basename": "reactor模型",
       "path": "分布式架构/reactor模型.md"
-    },
-    {
-      "basename": "TP_Tech_Brag_Doc",
-      "path": "template/TP_Tech_Brag_Doc.md"
     },
     {
       "basename": "OrderAggregate",
