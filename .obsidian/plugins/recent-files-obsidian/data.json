@@ -1,32 +1,40 @@
 {
   "recentFiles": [
     {
-      "basename": "本质词汇表",
-      "path": "本质技术/本质词汇表.md"
+      "basename": "RocketMq注册中心-nameService的设计",
+      "path": "brag document/RocketMq注册中心-nameService的设计.md"
     },
     {
       "basename": "未命名",
       "path": "未命名.md"
     },
     {
-      "basename": "读rocketMq源码",
-      "path": "读rocketMq源码.md"
+      "basename": "本质词汇表",
+      "path": "本质技术/本质词汇表.md"
     },
     {
-      "basename": "健身计划",
-      "path": "健身计划.md"
+      "basename": "mysql读写详细流程",
+      "path": "分布式架构/mysql读写详细流程.md"
+    },
+    {
+      "basename": "RocketMq持久化-commitlog中的优化",
+      "path": "brag document/RocketMq持久化-commitlog中的优化.md"
+    },
+    {
+      "basename": "读rocketMq源码",
+      "path": "读rocketMq源码.md"
     },
     {
       "basename": "prompt",
       "path": "prompt.md"
     },
     {
-      "basename": "Buffering (缓冲)& Pooling (池化)",
-      "path": "本质技术/Buffering (缓冲)& Pooling (池化).md"
+      "basename": "健身计划",
+      "path": "健身计划.md"
     },
     {
-      "basename": "RocketMq持久化-commitlog中的优化",
-      "path": "brag document/RocketMq持久化-commitlog中的优化.md"
+      "basename": "Buffering (缓冲)& Pooling (池化)",
+      "path": "本质技术/Buffering (缓冲)& Pooling (池化).md"
     },
     {
       "basename": "redis读写brag",
@@ -59,10 +67,6 @@
     {
       "basename": "中心化控制架构与smart client架构",
       "path": "分布式架构/中心化控制架构与smart client架构.md"
-    },
-    {
-      "basename": "mysql读写详细流程",
-      "path": "分布式架构/mysql读写详细流程.md"
     },
     {
       "basename": "DailyTemplate",
