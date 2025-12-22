@@ -1,8 +1,44 @@
 {
   "recentFiles": [
     {
-      "basename": "brag杂技",
-      "path": "brag杂技.md"
+      "basename": "TP_Tech_Brag_Doc",
+      "path": "template/TP_Tech_Brag_Doc.md"
+    },
+    {
+      "basename": "RocketMq注册中心-nameService的设计",
+      "path": "brag document/RocketMq注册中心-nameService的设计.md"
+    },
+    {
+      "basename": "RocketMq持久化-commitlog中的优化",
+      "path": "brag document/RocketMq持久化-commitlog中的优化.md"
+    },
+    {
+      "basename": "redis读写brag",
+      "path": "brag document/redis读写brag.md"
+    },
+    {
+      "basename": "inbox",
+      "path": "inbox.md"
+    },
+    {
+      "basename": "reactor模型",
+      "path": "本质技术/并发&通信/reactor模型.md"
+    },
+    {
+      "basename": "Double Buffering (双重缓冲)",
+      "path": "本质技术/并发&通信/Double Buffering (双重缓冲).md"
+    },
+    {
+      "basename": "Buffering (缓冲)& Pooling (池化)",
+      "path": "本质技术/并发&通信/Buffering (缓冲)& Pooling (池化).md"
+    },
+    {
+      "basename": "日志复制",
+      "path": "本质技术/分布式理论/日志复制.md"
+    },
+    {
+      "basename": "分布式存储核心概念辨析手册",
+      "path": "本质技术/IO&Storage/分布式存储核心概念辨析手册.md"
     },
     {
       "basename": "现代医疗体系在“慢病管理”上的痛点",
@@ -17,20 +53,8 @@
       "path": "健身计划.md"
     },
     {
-      "basename": "RocketMq持久化-commitlog中的优化",
-      "path": "brag document/RocketMq持久化-commitlog中的优化.md"
-    },
-    {
-      "basename": "TP_Tech_Brag_Doc",
-      "path": "template/TP_Tech_Brag_Doc.md"
-    },
-    {
-      "basename": "RocketMq注册中心-nameService的设计",
-      "path": "brag document/RocketMq注册中心-nameService的设计.md"
-    },
-    {
       "basename": "本质词汇表",
-      "path": "本质技术/本质词汇表.md"
+      "path": "本质技术/分布式理论/本质词汇表.md"
     },
     {
       "basename": "mysql读写详细流程",
@@ -41,32 +65,16 @@
       "path": "读rocketMq源码.md"
     },
     {
-      "basename": "Buffering (缓冲)& Pooling (池化)",
-      "path": "本质技术/Buffering (缓冲)& Pooling (池化).md"
-    },
-    {
-      "basename": "redis读写brag",
-      "path": "brag document/redis读写brag.md"
-    },
-    {
       "basename": "数据复制和数据分片",
-      "path": "本质技术/数据复制和数据分片.md"
-    },
-    {
-      "basename": "日志复制",
-      "path": "本质技术/日志复制.md"
+      "path": "本质技术/分布式理论/数据复制和数据分片.md"
     },
     {
       "basename": "零拷贝",
-      "path": "本质技术/零拷贝.md"
+      "path": "本质技术/IO&Storage/零拷贝.md"
     },
     {
       "basename": "分布式设计术语",
-      "path": "本质技术/分布式设计术语.md"
-    },
-    {
-      "basename": "分布式存储核心概念辨析手册",
-      "path": "本质技术/分布式存储核心概念辨析手册.md"
+      "path": "本质技术/分布式理论/分布式设计术语.md"
     },
     {
       "basename": "中间件的读写流程",
@@ -127,18 +135,6 @@
     {
       "basename": "redis的网络架构和cluster原理",
       "path": "分布式架构/redis的网络架构和cluster原理.md"
-    },
-    {
-      "basename": "reactor模型",
-      "path": "分布式架构/reactor模型.md"
-    },
-    {
-      "basename": "OrderAggregate",
-      "path": "电商下单/Aggregates/OrderAggregate.md"
-    },
-    {
-      "basename": "Order_Checkout_Storming",
-      "path": "电商下单/EventStorming/Order_Checkout_Storming.md"
     },
     {
       "basename": "event-storming",
