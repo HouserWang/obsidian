@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"id":"5ddca4076c4ddd1a","type":"text","text":"> “在分析 NameServer 源码时，我注意到其核心路由表采用普通的 HashMap 而非 ConcurrentHashMap。通过深入研究其并发模型，我发现它采用了 **ReentrantReadWriteLock 实现了跨多表更新的原子性**。这种设计规避了多个 ConcurrentHashMap 之间无法保证复杂业务逻辑一致性的缺陷，同时利用读写锁‘读读共享’的特性，完美契合了 NameServer 读多写少的业务场景，在保证数据**强一致性视图**的同时，实现了极高的查询吞吐量。”","x":-125,"y":-30,"width":425,"height":290},
+		{"id":"fde6aa7d6daa98af","x":-125,"y":280,"width":400,"height":260,"type":"text","text":"“通过对比分析 RocketMQ NameServer、Eureka 和 Nacos 的源码，我发现服务发现组件在并发模型上有着高度的共性，即**利用‘读写分离锁’结合‘数据不可变性（Immutability）’**来抗住高频查询。相比 Eureka 1.x 复杂的多级缓存，NameServer 采用的‘全量覆盖’而非‘细粒度修改’的策略，在保证原子性的前提下，极大地简化了系统复杂度。这种**‘奥卡姆剃刀’**式的设计哲学，对我后续设计高性能元数据管理模块有很大启发。”"}
+	],
+	"edges":[]
+}
