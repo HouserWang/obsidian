@@ -1,108 +1,24 @@
 {
   "recentFiles": [
     {
-      "basename": "未命名",
-      "path": "90_INBOX/未命名.canvas"
+      "basename": "分布式设计术语",
+      "path": "10_本质技术/分布式理论/分布式设计术语.md"
     },
     {
-      "basename": "inbox",
-      "path": "90_INBOX/inbox.md"
+      "basename": "本质词汇表",
+      "path": "10_本质技术/分布式理论/本质词汇表.md"
+    },
+    {
+      "basename": "头脑风暴",
+      "path": "20_技术栈/头脑风暴.md"
+    },
+    {
+      "basename": "Drawing 2025-12-03 09.58.12.excalidraw",
+      "path": "Excalidraw/Drawing 2025-12-03 09.58.12.excalidraw.md"
     },
     {
       "basename": "prompt",
       "path": "prompt.md"
-    },
-    {
-      "basename": "头脑风暴",
-      "path": "头脑风暴.md"
-    },
-    {
-      "basename": "能力错觉",
-      "path": "10_本质技术/能力错觉.md"
-    },
-    {
-      "basename": "读rocketMq源码",
-      "path": "20_技术栈/rocketmq/读rocketMq源码.md"
-    },
-    {
-      "basename": "中心化控制架构与smart client架构",
-      "path": "20_技术栈/中心化控制架构与smart client架构.md"
-    },
-    {
-      "basename": "中间件的读写流程",
-      "path": "20_技术栈/中间件的读写流程.md"
-    },
-    {
-      "basename": "TP_Tech_Brag_Doc",
-      "path": "98_template/TP_Tech_Brag_Doc.md"
-    },
-    {
-      "basename": "RocketMq注册中心-nameService的设计",
-      "path": "20_技术栈/brag document/RocketMq注册中心-nameService的设计.md"
-    },
-    {
-      "basename": "RocketMq持久化-commitlog中的优化",
-      "path": "20_技术栈/brag document/RocketMq持久化-commitlog中的优化.md"
-    },
-    {
-      "basename": "redis读写brag",
-      "path": "20_技术栈/brag document/redis读写brag.md"
-    },
-    {
-      "basename": "现代医疗体系在“慢病管理”上的痛点",
-      "path": "70_养生/现代医疗体系在“慢病管理”上的痛点.md"
-    },
-    {
-      "basename": "健身计划",
-      "path": "70_养生/健身计划.md"
-    },
-    {
-      "basename": "mysql读写详细流程",
-      "path": "20_技术栈/mysql/mysql读写详细流程.md"
-    },
-    {
-      "basename": "DailyTemplate",
-      "path": "98_template/DailyTemplate.md"
-    },
-    {
-      "basename": "英语常见派生词",
-      "path": "30_实战/英语常见派生词.md"
-    },
-    {
-      "basename": "工作中使用ai",
-      "path": "30_实战/工作中使用ai.md"
-    },
-    {
-      "basename": "实战手册",
-      "path": "30_实战/实战手册.md"
-    },
-    {
-      "basename": "ddd测试",
-      "path": "30_实战/ddd测试.md"
-    },
-    {
-      "basename": "mvc转ddd",
-      "path": "30_实战/mvc转ddd.md"
-    },
-    {
-      "basename": "netty",
-      "path": "10_本质技术/并发&通信/netty.md"
-    },
-    {
-      "basename": "Java Agent 监控体系",
-      "path": "20_技术栈/brag document/Java Agent 监控体系.md"
-    },
-    {
-      "basename": "redis读写微观全流程",
-      "path": "20_技术栈/redis/redis读写微观全流程.md"
-    },
-    {
-      "basename": "redis的网络架构和cluster原理",
-      "path": "20_技术栈/redis/redis的网络架构和cluster原理.md"
-    },
-    {
-      "basename": "event-storming",
-      "path": "event-storming.excalidrawlib"
     }
   ],
   "omittedPaths": [],

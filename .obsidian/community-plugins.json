@@ -1,6 +1,8 @@
 [
   "obsidian-git",
   "obsidian-excalidraw-plugin",
+  "dataview",
+  "templater-obsidian",
   "obsidian-tasks-plugin",
   "quickadd",
   "obsidian-style-settings",
@@ -8,6 +10,5 @@
   "calendar",
   "table-editor-obsidian",
   "obsidian-admonition",
-  "recent-files-obsidian",
-  "templater-obsidian"
+  "recent-files-obsidian"
 ]
