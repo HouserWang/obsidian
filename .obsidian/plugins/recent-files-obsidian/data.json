@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "brag杂技",
+      "path": "brag杂技.md"
+    },
+    {
       "basename": "现代医疗体系在“慢病管理”上的痛点",
       "path": "现代医疗体系在“慢病管理”上的痛点.md"
     },
@@ -15,10 +19,6 @@
     {
       "basename": "RocketMq持久化-commitlog中的优化",
       "path": "brag document/RocketMq持久化-commitlog中的优化.md"
-    },
-    {
-      "basename": "未命名",
-      "path": "未命名.md"
     },
     {
       "basename": "TP_Tech_Brag_Doc",
