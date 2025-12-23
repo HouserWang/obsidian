@@ -191,6 +191,8 @@ public class OrderService { // 以前叫 Service，现在心里把它当 AppServ
 *   `UserApplicationService`：处理 Command（写），调用 Domain。
 *   `UserQueryService`：处理 Query（读），直接调 Mapper。
 
+==在queryService类上加上@Transactional(readOnly = true) // 默认全类只读==
+
 **不要引入的**：
 *   别搞**读写数据库分离**（写库同步到读库）。
 *   别搞**Event Sourcing（事件溯源）**。
@@ -358,6 +360,7 @@ public class OrderService { // 以前叫 Service，现在心里把它当 AppServ
 这不是“两次异步”。
 *   Spring Event 默认是**同步**的（除非你加 `@Async`）。
 *   它的核心价值不在于“异步”，而在于**“逻辑解耦”**和**“事务绑定”**。
+*    ==*如果TransactionalEventListener内方法要使用数据库，要新开个事务制定@Transactional(propagation = Propagation.REQUIRES_NEW)*==
 
 ---
 
