@@ -55,7 +55,7 @@
     *   **价格**：**便宜到令人发指**。DeepSeek V3 的 API 价格大约是 GPT-4 的 **1%**。
     *   **成本计算**：作为重度开发者，你每天写代码调用 API，一个月大概只会消耗 **5~10 元人民币**。
     *   **配置方法**：
-        1.  去 DeepSeek 官网注册开发者账号，充值 10 元，获取 API Key。
+        1.  去   官网注册开发者账号，充值 10 元，获取 API Key。
         2.  在 IDEA 的 `Continue` 插件设置里，把 Model Provider 选为 DeepSeek，填入 Key。
     *   **体验**：你会拥有一个比 Copilot 更聪明（因为 DeepSeek V3 模型很强）、但价格只有 Copilot 十分之一的工具。
 
