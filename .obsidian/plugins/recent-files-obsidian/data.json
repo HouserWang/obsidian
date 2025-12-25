@@ -1,12 +1,12 @@
 {
   "recentFiles": [
     {
-      "basename": "源码收获",
-      "path": "20_技术栈/rocketmq/源码收获.md"
-    },
-    {
       "basename": "读rocketMq源码",
       "path": "20_技术栈/rocketmq/读rocketMq源码.md"
+    },
+    {
+      "basename": "预热与预分配",
+      "path": "20_技术栈/rocketmq/预热与预分配.md"
     },
     {
       "basename": "RocketMq注册中心-nameService的设计",
