@@ -1,16 +1,48 @@
 {
   "recentFiles": [
     {
+      "basename": "未命名",
+      "path": "20_技术栈/rocketmq/未命名.md"
+    },
+    {
+      "basename": "读rocketMq源码",
+      "path": "20_技术栈/rocketmq/读rocketMq源码.md"
+    },
+    {
+      "basename": "RocketMq注册中心-nameService的设计",
+      "path": "20_技术栈/brag document/RocketMq注册中心-nameService的设计.md"
+    },
+    {
+      "basename": "RocketMq持久化-commitlog中的优化",
+      "path": "20_技术栈/brag document/RocketMq持久化-commitlog中的优化.md"
+    },
+    {
+      "basename": "零拷贝",
+      "path": "10_本质技术/IO&Storage/零拷贝.md"
+    },
+    {
+      "basename": "inbox_技术",
+      "path": "90_INBOX/inbox_技术.md"
+    },
+    {
+      "basename": "inbox",
+      "path": "90_INBOX/inbox.md"
+    },
+    {
+      "basename": "健身计划",
+      "path": "70_养生/健身计划.md"
+    },
+    {
+      "basename": "Buffering (缓冲)& Pooling (池化)",
+      "path": "10_本质技术/并发&通信/Buffering (缓冲)& Pooling (池化).md"
+    },
+    {
       "basename": "pipline和stream",
       "path": "10_本质技术/并发&通信/pipline和stream.md"
     },
     {
       "basename": "工作中使用ai",
       "path": "30_实战/工作中使用ai.md"
-    },
-    {
-      "basename": "inbox_技术",
-      "path": "90_INBOX/inbox_技术.md"
     },
     {
       "basename": "spring",
@@ -25,16 +57,8 @@
       "path": "30_实战/实战手册.md"
     },
     {
-      "basename": "inbox",
-      "path": "90_INBOX/inbox.md"
-    },
-    {
       "basename": "未命名",
       "path": "90_INBOX/未命名.canvas"
-    },
-    {
-      "basename": "健身计划",
-      "path": "70_养生/健身计划.md"
     },
     {
       "basename": "Drawing 2025-12-03 09.58.12.excalidraw",
