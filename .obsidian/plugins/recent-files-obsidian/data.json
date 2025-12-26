@@ -1,6 +1,18 @@
 {
   "recentFiles": [
     {
+      "basename": "引用计数 (Reference Counting)",
+      "path": "10_本质技术/并发&通信/引用计数 (Reference Counting).md"
+    },
+    {
+      "basename": "Double Buffering (双重缓冲)",
+      "path": "10_本质技术/并发&通信/Double Buffering (双重缓冲).md"
+    },
+    {
+      "basename": "Buffering (缓冲)& Pooling (池化)",
+      "path": "10_本质技术/并发&通信/Buffering (缓冲)& Pooling (池化).md"
+    },
+    {
       "basename": "未命名",
       "path": "未命名.md"
     },
@@ -35,10 +47,6 @@
     {
       "basename": "健身计划",
       "path": "70_养生/健身计划.md"
-    },
-    {
-      "basename": "Buffering (缓冲)& Pooling (池化)",
-      "path": "10_本质技术/并发&通信/Buffering (缓冲)& Pooling (池化).md"
     },
     {
       "basename": "pipline和stream",
