@@ -1,20 +1,32 @@
 {
   "recentFiles": [
     {
-      "basename": "Drawing 2025-12-03 09.58.12.excalidraw",
-      "path": "Excalidraw/Drawing 2025-12-03 09.58.12.excalidraw.md"
+      "basename": "健身计划",
+      "path": "70_养生/健身计划.md"
+    },
+    {
+      "basename": "现代医疗体系在“慢病管理”上的痛点",
+      "path": "70_养生/现代医疗体系在“慢病管理”上的痛点.md"
     },
     {
       "basename": "怎么吃",
       "path": "70_养生/怎么吃.md"
     },
     {
-      "basename": "读rocketMq源码",
-      "path": "20_技术栈/rocketmq/读rocketMq源码.md"
-    },
-    {
       "basename": "未命名",
       "path": "未命名.md"
+    },
+    {
+      "basename": "prompt",
+      "path": "prompt.md"
+    },
+    {
+      "basename": "Drawing 2025-12-03 09.58.12.excalidraw",
+      "path": "Excalidraw/Drawing 2025-12-03 09.58.12.excalidraw.md"
+    },
+    {
+      "basename": "读rocketMq源码",
+      "path": "20_技术栈/rocketmq/读rocketMq源码.md"
     },
     {
       "basename": "引用计数 (Reference Counting)",
@@ -53,10 +65,6 @@
       "path": "90_INBOX/inbox.md"
     },
     {
-      "basename": "健身计划",
-      "path": "70_养生/健身计划.md"
-    },
-    {
       "basename": "pipline和stream",
       "path": "10_本质技术/并发&通信/pipline和stream.md"
     },
@@ -91,10 +99,6 @@
     {
       "basename": "头脑风暴",
       "path": "20_技术栈/头脑风暴.md"
-    },
-    {
-      "basename": "prompt",
-      "path": "prompt.md"
     }
   ],
   "omittedPaths": [],
