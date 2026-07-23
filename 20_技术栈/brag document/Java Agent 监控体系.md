@@ -50,7 +50,7 @@ status: 🟢 掌握
 
 ## 4. 简历话术预案 (Resume Snippet)
 > 📝 **降维打击**：明年写简历时，直接复制这一段。
-> *格式建议：掌握 [技术原理]，在 [业务场景] 中，通过 [技术手段]，解决了 [什么问题/提升了什么指标]。*
+> *Format suggestion：掌握 [技术原理]，在 [业务场景] 中，通过 [技术手段]，解决了 [什么问题/提升了什么指标]。*
 
 - **话术 1 (侧重原理)**：深入理解 **Java Agent** 字节码增强原理，掌握 **SkyWalking** 插件机制与 **ByteBuddy** 核心技术；构建了基于 **Tracing (SkyWalking)** + **Metrics (Prometheus)** + **Logging (ELK)** 的立体化可观测性体系。
 - **话术 2 (侧重实战)**：针对 B 端复杂链路，通过 **SkyWalking 自定义埋点 (@Trace)** 解决 DDD 领域层监控盲区问题；结合 **Micrometer** 搭建业务指标监控大盘，实现了对核心业务链路的**全景可视化**与**秒级故障告警**。
@@ -60,3 +60,7 @@ status: 🟢 掌握
 - [[Java_Agent_Bytecode]] (字节码增强原理)
 - [[DDD_Tactical_Design]] (DDD 战术设计)
 - [[Redis_Cluster_Monitor]] (中间件监控)
+- [[ddd-mvc转ddd]] — DDD 分层监控的实战落地
+- [[实战手册]] — Arthas 线上诊断与 SkyWalking 的配合使用
+- [[Reactor Pattern (Reactor 模型)|Reactor 模型]] — 可观测性的底层 IO 模型基础
+- [[Sidecar Pattern (边车模式)|Sidecar]] — Agent 模式的本质

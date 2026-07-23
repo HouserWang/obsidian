@@ -449,3 +449,117 @@ public class OrderSyncListener {
 ```
 
 这样写，既符合 DDD 的语义，又解决了分布式系统最头疼的事务问题，非常优雅。
+
+
+明白了，你需要的是**以你的具体疑问为线索，记录解开的疑惑和关键洞见**，而不是通用的指南。以下按你提问时的纠结脉络，提取可补充进你笔记的要点。
+
+---
+
+### 1. 应用服务 vs 领域服务：到底谁调 Repository？谁保存？
+
+**疑惑**：两者都能调 Repository 查数据，那区别在哪？谁该 save？
+
+**核心解答**：
+- **领域服务**：只调 Repository **读**数据来做跨聚合的业务判断，**绝不 save**。它只发号施令调用聚合的方法，持久化的活它不碰。
+- **应用服务**：负责完整流程——取聚合 → 调领域服务/聚合方法 → **唯一做 save 的地方**。事务边界也在这。
+
+**记忆点**：领域服务是“专家”，只查不存；应用服务是“导演”，负责存盘。
+
+---
+
+### 2. DDD 只针对写操作？为什么感觉全是查询？
+
+**疑惑**：DDD 战术建模似乎只关注修改状态，但实际项目里查询占大多数。
+
+**核心解答**：
+- DDD 确实只为保护“改变业务状态”时的复杂规则。查询没有业务不变性要保护，所以 DDD 对查询极宽松。
+- 大量查询正好是 CQRS 发挥的地方：**读就纯粹读，走 Mapper 或视图，完全绕开领域模型**。不要强行把查询塞进聚合或 Repository。
+
+---
+
+### 3. 写操作前需要复杂查询（如条件筛选要修改的聚合），代码放哪？
+
+命令侧需要一个查询
+│
+├─ 是为了找到要操作的聚合？
+│   ├─ 条件简单（基于聚合自身属性）→ Repository 里加 findXxx()
+│   └─ 条件复杂（跨表/统计）→ 查询服务返回 ID 列表，再用 Repository.findById 加载
+│
+├─ 是为了获取外部数据做校验/构建？
+│   └─ 应用服务直接调查询服务（ProductQueryService 等），拿 DTO
+│
+└─ 这个查询逻辑本身就是领域规则？
+    └─ 定义领域层只读接口，基础设施实现，应用服务注入后传入聚合
+
+---
+
+---
+
+### 5. Repository 居然不只是 byId 和 save？它还有复杂转换
+
+**疑惑**：Repository 内部要把数据库数据（JSON、关联表）组装成聚合，原来这才是它与 Mapper 的本质区别。
+
+**核心解答**：
+- 命令端 Repository 职责：**聚合重建**（DO 转聚合）与**持久化转换**（聚合转 DO）。像 JSON 转值对象、关联表转实体列表，这些脏活全在 Repository 实现里手写。
+- 查询端 Mapper：直接返回扁平 DTO，无聚合组装。
+- 你理解了：**Repository 的复杂转换不是负担，而是领域层保持纯净的必然代价。**
+
+---
+
+### 6. `reconstitute` 让私有构造器形同虚设？
+
+**疑惑**：私有构造器保证入口唯一，但公开的 `reconstitute` 又让外界可以创建聚合，不矛盾吗？
+
+**核心解答**：
+- `create` 和 `reconstitute` 是两种完全不同的生命周期：前者带业务规则校验，后者仅从持久化原样复活，不执行校验。
+- 封装的关键是**把 `reconstitute` 设为包级私有（package-private）**，让只有同包的 Repository 实现能调。这样入口依然受控，不破坏封装。
+
+
+---
+### 当你写代码纠结“要不要写 DomainService”时，直接看下表：
+
+|   |   |   |   |
+|---|---|---|---|
+|联动场景|是否涉及计算/规则校验？|应该写在何处？|举例|
+|**同种聚合** (A <br><br>```<br>→→<br>```<br><br> B)|**有**（如转账，需算手续费、校验额度）|**DomainService** [2.2]|TransferDomainService [2.2]|
+|**同种聚合** (A <br><br>```<br>→→<br>```<br><br> B)|**无**（仅批量修改状态，无关联规则）|**AppService 循环调用**|批量冻结 10 个账户|
+|**不同聚合** (A <br><br>```<br>++<br>```<br><br> B <br><br>```<br>++<br>```<br><br> C)|**有**（如订单+优惠券，需组合算折扣）[[4](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQHxkBcDwW0dpYtvjs1CjLsTFMGqyPVUJhRD08iQ9fWOGawuwW0wJoUIlexMhH4wIfl6OgLgmf92LbFN_N13tmdu_CLuWE1iePr3CIVRCY_DZ7lIS5In0AhMYmZ_zG4XQ87iON0HiXeumBmzLl2r9Mytb7xvql7FksoSKMitSQ%3D%3D)]|**DomainService** [2.2]|DiscountCalculationService|
+|**不同聚合** (A <br><br>```<br>++<br>```<br><br> B <br><br>```<br>++<br>```<br><br> C)|**无**（仅技术步骤先后：付钱 <br><br>```<br>→→<br>```<br><br> 扣库存）|**AppService 编排 / 领域事件驱动**[[4](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQHxkBcDwW0dpYtvjs1CjLsTFMGqyPVUJhRD08iQ9fWOGawuwW0wJoUIlexMhH4wIfl6OgLgmf92LbFN_N13tmdu_CLuWE1iePr3CIVRCY_DZ7lIS5In0AhMYmZ_zG4XQ87iON0HiXeumBmzLl2r9Mytb7xvql7FksoSKMitSQ%3D%3D)]|PaymentApplicationService|
+
+---
+这些就是你一路追问中真正解开的结。每条都可直接复制到你原有的笔记对应条目下，作为“为什么这样做”的脚注。
+
+
+## 二、更多命名约定，让你的 CQRS 代码自文档化
+
+### 命令侧（领域层 + 应用层）
+
+|位置|动词|含义|示例|
+|---|---|---|---|
+|Repository|`find`|查找聚合|`findById`, `findByUserIdAndStatus`|
+|Repository|`save`|保存聚合|`save(Order order)`|
+|Repository|`delete`|删除聚合|`delete(Order order)`|
+|聚合方法|`create`|静态工厂，新建|`Order.create(...)`|
+|聚合方法|`reconstitute`|从持久化重建|`Order.reconstitute(...)`|
+|聚合行为|业务动词|改变状态|`cancel()`, `pay()`, `markAsShipped()`|
+|领域服务|业务动词|跨聚合协调|`transfer(Account from, Account to, Money amount)`|
+|应用服务|业务动词|用例名|`createOrder(CreateOrderCommand cmd)`|
+
+### 查询侧（查询服务 + Mapper）
+
+| 位置           | 动词       | 含义   | 示例                                                  |
+| ------------ | -------- | ---- | --------------------------------------------------- |
+| Mapper/DAO   | `select` | 查询数据 | `selectDetailById`, `selectSummaryList`             |
+| Mapper/DAO   | `count`  | 计数   | `countByStatus(OrderStatus status)`                 |
+| Mapper/DAO   | `exist`  | 是否存在 | `existsByPhone(String phone)`                       |
+| QueryService | `get`    | 获取视图 | `getOrderDetail(Long id)`, `getUserOrders(Query q)` |
+| QueryService | `list`   | 获取列表 | `listPendingOrders()`                               |
+| 查询参数对象       | `Query`  | 查询条件 | `OrderListQuery`, `SuspiciousOrderQuery`            |
+
+---
+## 🔗 关联笔记
+- [[ddd-极简战略设计实战]] — DDD 战略设计（上下文划分、领域事件）的实战流程
+- [[ddd-测试]] — DDD 各层测试的具体写法
+- [[实战手册]] — 缓存、限流、监控的工程实战汇总
+- [[Java Agent 监控体系]] — DDD 分层监控的实现
+- [[spring]] — Spring 实战技巧（构造器注入、配置绑定）

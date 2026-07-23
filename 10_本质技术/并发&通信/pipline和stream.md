@@ -45,3 +45,10 @@
         
 
 **一句话总结：DLedger 用的是 Pipeline（并发发包），而 RocketMQ 默认 HA 用的是 Stream（字节流直灌）。**
+
+---
+## 🔗 关联笔记
+- [[netty]] — Netty Pipeline 的代码级实现
+- [[reactor模型]] — 事件驱动的 Reactor 模型
+- [[零拷贝]] — FileChannel.transferTo 在 Stream 模式中的应用
+- [[读rocketMq源码]] — RocketMQ DLedger vs 默认 HA 的源码对比

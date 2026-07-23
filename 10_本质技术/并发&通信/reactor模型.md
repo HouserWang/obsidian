@@ -7,3 +7,10 @@
 - [[redis的网络架构和cluster原理]]redis是 **单 Reactor**（或 Reactor + IO 线程池），因为它假设业务处理（内存 KV 操作）极快，瓶颈在网络 IO。
     
 -  [[netty]]是 **主从 Reactor**（Boss + Worker），因为它假设业务处理可能很慢，需要把连接接入（Boss）和数据读写（Worker）分开，甚至建议把复杂业务逻辑进一步剥离到独立线程池。
+
+---
+## 🔗 关联笔记
+- [[redis的网络架构和cluster原理]] — Redis 单 Reactor 到多线程 IO 的演进
+- [[netty]] — Netty 主从 Reactor 的代码实现
+- [[redis读写brag]] — Reactor 模型在 Redis 读写全链路中的体现
+- [[pipline和stream]] — Reactor 之上的请求处理模式

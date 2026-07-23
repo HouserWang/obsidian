@@ -169,3 +169,9 @@
 3.  **Interface 层**：把 Controller 贴给 AI，让它生成 **@WebMvcTest**，并告诉它要 Mock 哪个 Service。
 
 这样你就不用纠结配置，直接享受 AI 带来的效率提升。
+
+---
+## 🔗 关联笔记
+- [[ddd-mvc转ddd]] — DDD 各层代码结构，理解测试对应关系
+- [[ddd-极简战略设计实战]] — 战略设计后的战术落地
+- [[spring]] — Spring 测试注解（@WebMvcTest 等）的基础

@@ -1,3 +1,4 @@
+
 ´这是一篇**骨灰级**的 Redis 源码与架构深度复盘。
 
 我们将把镜头拉得非常近，从**内核层面的 TCP 三次握手**开始，一直追踪到**磁盘 PageCache 的落盘**，完整还原一个 Redis Cluster 写请求的生命周期。
@@ -55,7 +56,7 @@
 
 2.  **触发 Accept 事件:**
     *   Redis 主线程的 EventLoop 正阻塞在 `epoll_wait` 上。
-    *   因为 Redis 启动时监听了 Server Port (6379)，当全连接队列有数据，`epoll` 返回 **Listening Socket** 可读事件。
+    *   因为 Redis 启动时监听了 Server Port (6379)，当全连接队列有数据，`epoll` 返回 **Listening Socket** 可读事件。参考[[Reactor Pattern (Reactor 模型)|Reactor 模型]]。
 
 3.  **主线程接入 (Main Thread Accept):**
     *   主线程调用回调函数 `acceptTcpHandler`。
@@ -88,7 +89,7 @@
 
 3.  **主线程串行执行 (Main Thread Execution):**
     *   IO 线程读完后，主线程接管。
-    *   **Cluster 路由检查：** 计算 `CRC16("user:1001")`，判断 Slot 归属。如果不归我管，返回 `-MOVED`。
+    *   **Cluster 路由检查：** 计算 `CRC16("user:1001")`，判断 Slot 归属。如果不归我管，返回 `-MOVED`。参考[[redis的网络架构和cluster原理]]。
     *   **执行命令：** 调用 `setCommand`，修改内存中的 `redisDb`（HashTable）。
     *   *此时内存数据已更新。*
 
@@ -109,6 +110,8 @@
     *   **数据流向：** 数据从 **Redis 用户态内存** 拷贝到了 **Linux 内核的 PageCache (页缓存)**。
     *   **耗时：** 极快（微秒级），因为不涉及磁盘 IO。
     *   *此时：如果 Redis 进程 Crash，数据不丢（在 OS 里）；如果服务器断电，数据丢失。*
+    *   参考[[WAL (预写式日志)|WAL]]。
+    *   参考[[分布式存储核心概念辨析手册]]。
 
 3.  **落盘 (Disk Sync):**
     *   因为配置是 `appendfsync everysec`。
@@ -128,6 +131,7 @@
 2.  **异步发送:**
     *   在 EventLoop 的 `beforeSleep` 阶段，或者 IO 线程写回阶段。
     *   调用 `write(slave_fd)`，把数据发给 Slave。
+    *   参考[[日志复制]]。
 
 ---
 
@@ -148,7 +152,6 @@
 ---
 
 
-
 这就是一个 Redis Cluster 写操作，从连接建立到数据落盘的**微观物理过程**。
 
-
+参考[[redis的网络架构和cluster原理]]。参考[[Reactor Pattern (Reactor 模型)|Reactor 模型]]。参考[[中间件的读写流程]]。参考[[分布式存储核心概念辨析手册]]。参考[[日志复制]]。

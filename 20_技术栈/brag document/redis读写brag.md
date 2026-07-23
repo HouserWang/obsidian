@@ -17,8 +17,8 @@ status: 🟢 掌握
 ## 1. 第一性原理 (The "Why" & "How")
 > 💡 **核心机制拆解**：从内核中断到应用层内存的完整漂流。
 
-- **底层机制**：Smart Client 路由 + IO 多路复用 (epoll) + Reactor 模型 (单线程执行/多线程IO) + PageCache。
-- **设计哲学**：**计算与 IO 分离** (Redis 6.0 核心)、**Append-Only** (顺序写盘)、**Gossip** (去中心化)。
+- **底层机制**：[[Smart Client vs. Dumb Client (智能客户端 vs. 哑客户端)|Smart Client]] 路由 + IO 多路复用 (epoll) + [[Reactor Pattern (Reactor 模型)|Reactor 模型]] (单线程执行/多线程IO) + PageCache。
+- **设计哲学**：**计算与 IO 分离** (Redis 6.0 核心)、**[[Append-Only Log (仅追加日志)|Append-Only]]** (顺序写盘)、**[[Gossip Protocol (Gossip 协议)|Gossip]]** (去中心化)。
 - **全链路关键细节**：
     1. **连接建立**：内核三次握手 -> 全连接队列 -> 主线程 `epoll_wait` 捕获 Accept 事件 -> `accept()` 获取 FD -> 注册 Read 事件。
     2. **请求读取 (IO Threads)**：数据到达网卡 -> 内核 Buffer -> **IO 线程并行读取**并解析 RESP 协议 (解码) -> 放入主线程队列。(此时主线程忙轮询等待)
@@ -33,12 +33,12 @@ status: 🟢 掌握
 
 | 维度 | Redis (Remote Cache) | Caffeine (Local Cache) |
 | :--- | :--- | :--- |
-| **一致性** | **最终一致性** (通过延迟双删/主动刷新可控) | **弱一致性** (多实例间状态割裂，难以同步) |
+| **一致性** | **[[Eventual Consistency (最终一致性)|最终一致性]]** (通过延迟双删/主动刷新可控) | **弱一致性** (多实例间状态割裂，难以同步) |
 | **IO 模型** | **IO 密集型** (受限于网络带宽与延迟) | **内存直读** (零网络开销，纳秒级) |
 | **数据规模** | **海量** (集群分片，TB 级) | **受限** (受限于 JVM 堆内存，GB 级) |
 | **适用场景** | 分布式锁、Session共享、核心业务数据 | 静态配置、极热点数据 (L1 缓存) |
 
-- **核心差异点**：Redis 通过 **IO 多路复用** 解决了海量连接下的吞吐问题，适合作为分布式系统的**“共享内存”**；Caffeine 牺牲了数据一致性换取了**极致的读性能**，适合作为 Redis 前置的 L1 缓存 (多级缓存架构)。
+- **核心差异点**：Redis 通过 **IO 多路复用** 解决了海量连接下的吞吐问题，适合作为分布式系统的**“共享内存”**；Caffeine 牺牲了数据一致性换取了**极致的读性能**，适合作为 Redis 前置的 L1 缓存 (多级缓存架构)。参考[[Buffering (缓冲)& Pooling (池化)|多级缓存]]。
 
 ## 3. B 端业务落地 (The Value)
 > 💼 **场景化应用**：库存扣减、配置中心、分布式锁
@@ -61,3 +61,11 @@ status: 🟢 掌握
 ## 🔗 关联知识
 - [[Linux_IO_Models]]
 - [[Redis_Persistence]]
+- [[redis的网络架构和cluster原理]] — Redis 网络架构与 Cluster 原理详解
+- [[redis读写微观全流程]] — 从 TCP 握手到 PageCache 落盘的微观全链路
+- [[Reactor Pattern (Reactor 模型)|Reactor 模型]] — Reactor 模型在 Redis 中的演进
+- [[中间件的读写流程]] — Redis 与其他中间件读写流程的对比
+- [[秒杀与库存]] — Redis Lua 在库存扣减中的实战应用
+- [[Smart Client vs. Dumb Client (智能客户端 vs. 哑客户端)|Smart Client]] — Redis Cluster 的路由模式
+- [[Gossip Protocol (Gossip 协议)|Gossip]] — Redis Cluster 的去中心化通信
+- [[Eventual Consistency (最终一致性)|最终一致性]] — Redis 缓存一致性模型

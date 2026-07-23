@@ -14,23 +14,23 @@ status: 🟢 掌握
 ## 1. 第一性原理 (The "Why" & "How")
 > 💡 **核心机制拆解**：基于 IO 模型与文件系统的深度优化。
 
-- **底层机制**：Mmap (读写分离), PageCache, Sendfile (零拷贝), Sequential Write (顺序写)
+- **底层机制**：Mmap (读写分离), PageCache, Sendfile ([[零拷贝|零拷贝]]), Sequential Write (顺序写)
 - **设计哲学**：
-    - **Write-Optimized**：所有 Topic 数据聚合写入一个 CommitLog，将随机 IO 转化为顺序 IO。
+    - **Write-Optimized**：所有 Topic 数据聚合写入一个 CommitLog，将随机 IO 转化为顺序 IO。参考[[写放大 vs 读放大]]。
     - **Read-Optimized**：配合 ConsumeQueue (定长索引) 实现 O(1) 寻址，利用 PageCache 预读加速。
 - **关键细节流转**：
-    1.  **写入 (Write)**：文件预分配/预热 (解决 PageFault) -> 自旋锁 (无锁并发) -> **TransientStorePool (堆外内存隔离)** -> Mmap (PageCache) -> Group Commit (批量落盘)。
+    1.  **写入 (Write)**：文件预分配/预热 (解决 PageFault) -> 自旋锁 (无锁并发) -> **TransientStorePool (堆外内存隔离)** -> Mmap (PageCache) -> Group Commit (批量落盘)。参考[[Double Buffering (双重缓冲)|双缓冲]]。
     2.  **分发 (Dispatch)**：**ReputService** 线程异步读取 CommitLog -> 构建 **ConsumeQueue** (消费索引) & **IndexFile** (Key查询索引)。
-    3.  **读取 (Read)**：逻辑 Offset -> 计算 CQ 位置 ($O(1)$) -> **Tag 过滤 (前置过滤)** -> 获取物理 Offset -> **Sendfile** (Zero-Copy 直达网卡)。
+    3.  **读取 (Read)**：逻辑 Offset -> 计算 CQ 位置 ($O(1)$) -> **Tag 过滤 (前置过滤)** -> 获取物理 Offset -> **Sendfile** ([[零拷贝|Zero-Copy]] 直达网卡)。
 
 ## 2. 横向对比 (The Trade-off)
 > ⚖️ **架构师视角**：RocketMQ 牺牲了部分单机极限吞吐，换取了**海量 Topic 下的稳定性**。
 
-| 维度 | RocketMQ (CommitLog) | Kafka (Partition Log) | 选型判断逻辑 |
-| :--- | :--- | :--- | :--- |
-| **IO 模型** | **全局顺序写** (所有 Topic 混写) | **分区顺序写** (每个 Partition 独立文件) | 业务 Topic 多选 RocketMQ |
-| **Topic 瓶颈** | **无惧数量** (1w+ Topic 性能不衰减) | **敏感** (Topic 多导致磁盘随机 IO，性能劣化) | 复杂业务中台选 RocketMQ |
-| **并发控制** | Broker 级锁 (串行化写入，延迟极低) | Partition 级无锁 (高吞吐，但在大 Batch 下延迟高) | 金融/交易类选 RocketMQ |
+| 维度           | RocketMQ (CommitLog)       | Kafka (Partition Log)              | 选型判断逻辑               |
+| :----------- | :------------------------- | :--------------------------------- | :------------------- |
+| **IO 模型**    | **全局顺序写** (所有 Topic 混写)    | **分区顺序写** (每个 Partition 独立文件)      | 业务 Topic 多选 RocketMQ |
+| **Topic 瓶颈** | **无惧数量** (1w+ Topic 性能不衰减) | **敏感** (Topic 多导致磁盘随机 IO，性能劣化)     | 复杂业务中台选 RocketMQ     |
+| **并发控制**     | Broker 级锁 (串行化写入，延迟极低)     | Partition 级无锁 (高吞吐，但在大 Batch 下延迟高) | 金融/交易类选 RocketMQ     |
 
 ## 3. B 端业务落地 (The Value)
 > 💼 **场景化应用**：优惠券分发 / 削峰填谷
@@ -58,4 +58,17 @@ status: 🟢 掌握
 > 
 > 在技术实现上，它深度压榨了操作系统的内核特性，利用 **mmap 内存映射** 配合 **文件预分配与预热机制**，从物理层面规避了 Page Fault（缺页中断）导致的写入毛刺。
 > 
-> 这种设计让 RocketMQ 具备了在**海量 Topic** 场景下依然保持**低延迟、高吞吐**的能力，是它支撑金融级交易链路的核心基石。”
+> 这种设计让 RocketMQ 具备了在**海量 Topic** 场景下依然保持**低延迟、高吞吐**的能力，是它支撑金融级交易链路的核心基石。”
+
+---
+## 🔗 关联笔记
+- [[零拷贝]] — mmap/sendfile 的底层原理
+- [[预热与预分配]] — 文件预分配与预热机制的详细实现
+- [[Buffering (缓冲)& Pooling (池化)|池化]] — TransientStorePool 堆外内存隔离
+- [[Double Buffering (双重缓冲)|双缓冲]] — GroupCommitService 双缓冲刷盘
+- [[引用计数 (Reference Counting)|引用计数]] — MappedFile 的并发安全管理
+- [[写放大 vs 读放大]] — CommitLog 顺序写如何压低写放大
+- [[读rocketMq源码]] — CommitLog 源码阅读指南
+- [[中间件的读写流程]] — 与其他中间件 IO 模型的对比
+- [[Append-Only Log (仅追加日志)|Append-Only Log]] — CommitLog 的存储模型本质
+- [[Flush Strategy (刷盘策略)|刷盘策略]] — 同步刷盘 vs 异步刷盘的权衡

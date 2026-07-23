@@ -33,9 +33,9 @@
 ### 第一板块：大脑 —— NameServer (路由管理)
 *虽然简单，但要懂它是怎么做到“无状态”和“高可用”的。*
 
-**面试考点**：
-*   Broker 挂了，NameServer 多久知道？（心跳机制）
-*   NameServer 之间不通信，数据怎么保证一致？（CAP 中的 AP 设计）
+*   **面试考点**：
+*   Broker 挂了，NameServer 多久知道？（[[Heartbeat Mechanism (心跳机制)|心跳机制]]）
+*   NameServer 之间不通信，数据怎么保证一致？（[[CAP Theorem (CAP 定理)|CAP]] 中的 [[AP System (AP 系统)|AP 设计]]）
 
 **必读源码**：
 1.  **`RouteInfoManager.java`** (核心管理类)
@@ -61,27 +61,27 @@
 2.  **`MQFaultStrategy.java`** (故障熔断策略)
     *   **位置**：`client/latency`
     *   **关键方法**：`selectOneMessageQueue`。
-    *   **架构视角**：重点看 `latencyFaultTolerance.isAvailable(brokerName)`。它实现了一个类似 Sentinel 的熔断逻辑：如果某 Broker 发送耗时高，未来几秒内就避开它。这是客户端高可用的核心。
+    *   **架构视角**：重点看 `latencyFaultTolerance.isAvailable(brokerName)`。它实现了一个类似 [[限流与熔断|Sentinel 的熔断]] 逻辑：如果某 Broker 发送耗时高，未来几秒内就避开它。这是客户端高可用的核心。
 
 ---
 
 ### 第三板块：心脏 —— Broker Store (存储引擎)
 *这是 RocketMQ 的半壁江山，也是与 Kafka 差异最大的地方。*
 
-**面试考点**：
-*   CommitLog 和 ConsumeQueue 的关系？（读写分离）
-*   零拷贝是怎么落地的？
-*   同步刷盘和异步刷盘的区别？
+*   **面试考点**：
+*   [[WAL (预写式日志)|CommitLog]] 和 ConsumeQueue 的关系？（读写分离）
+*   [[零拷贝|零拷贝]]是怎么落地的？
+*   [[Flush Strategy (刷盘策略)|同步刷盘]]和[[Flush Strategy (刷盘策略)|异步刷盘]]的区别？
 
 **必读源码**：
 1.  **`CommitLog.java`** (数据文件)
     *   **位置**：`store`
     *   **关键方法**：`asyncPutMessage`。
-    *   **架构视角**：看它如何加锁（SpinLock/ReentrantLock），如何调用 `MappedFile.appendMessage` 写内存，以及如何提交刷盘请求 `submitFlushRequest`。
+    *   **架构视角**：看它如何加锁（SpinLock/ReentrantLock），如何调用 `MappedFile.appendMessage` 写内存，以及如何提交刷盘请求 `submitFlushRequest`。参考[[Flush Strategy (刷盘策略)|刷盘策略]]。
 2.  **`MappedFile.java`** (内存映射)
     *   **位置**：`store`
     *   **关键方法**：`init` (mmap), `appendMessagesInner`。
-    *   **架构视角**：Java NIO `FileChannel.map` 的最佳实践。
+    *   **架构视角**：Java NIO `FileChannel.map` 的最佳实践。参考[[零拷贝|mmap]]。
 3.  **`ReputMessageService.java`** (分发线程)
     *   **位置**：`store/DefaultMessageStore.java` 内部类
     *   **关键方法**：`doReput`。
@@ -92,7 +92,7 @@
 ### 第四板块：神经 —— 特色功能 (事务与延时)
 *这是你最关心的部分，也是 RocketMQ 的差异化竞争力。*
 
-#### 1. 分布式事务消息 (Transaction)
+#### 1. [[Distributed Transaction (分布式事务)|分布式事务消息]] (Transaction)
 **面试考点**：
 *   Half Message 是怎么存的？Consumer 为什么看不见？
 *   事务回查（Check）是怎么触发的？
@@ -127,15 +127,15 @@
 
 ---
 
-### 第五板块：出口 —— Consumer (重平衡)
+#### 第五板块：出口 —— Consumer ([[Rebalancing (再平衡)|重平衡]])
 *生产环境 80% 的问题（消息堆积、重复消费）都出在这里。*
 
 **面试考点**：
-*   Rebalance 是怎么做的？
+*   [[Rebalancing (再平衡)|Rebalance]] 是怎么做的？
 *   并发消费（Concurrent）和顺序消费（Orderly）的实现区别？
 
 **必读源码**：
-1.  **`RebalanceImpl.java`** (重平衡算法)
+1.  **`RebalanceImpl.java`** ([[Rebalancing (再平衡)|重平衡]]算法)
     *   **位置**：`client/impl/consumer`
     *   **关键方法**：`rebalanceByTopic`。
     *   **架构视角**：看它如何根据 `cidAll` (所有消费者) 和 `mqAll` (所有队列) 进行分配。重点看 `AllocateMessageQueueAveragely`（平均分配算法）。
@@ -160,3 +160,16 @@
 4.  **补全**：`RouteInfoManager` (NameServer) -> `NettyRemotingServer` (通信)。**搞懂底层支撑。**
 
 这次的清单补全了**事务消息**和**延时消息**，覆盖了 RocketMQ 最核心的 80% 源码。配合你的视频教程，效果会非常好！
+
+---
+## 🔗 关联笔记
+- [[RocketMq持久化-commitlog中的优化]] — CommitLog 存储引擎的深度优化
+- [[RocketMq注册中心-nameService的设计]] — NameServer 路由管理的架构设计
+- [[pipline和stream]] — DLedger Pipeline vs 默认 HA Stream 的对比
+- [[预热与预分配]] — MappedFile 预分配与预热的源码细节
+- [[中间件的读写流程]] — RocketMQ 在中间件读写流程全景中的定位
+- [[零拷贝]] — sendfile 在消息消费中的应用
+- [[Append-Only Log (仅追加日志)|Append-Only Log]] — CommitLog 的存储模型
+- [[Flush Strategy (刷盘策略)|刷盘策略]] — 同步刷盘 vs 异步刷盘
+- [[Distributed Transaction (分布式事务)|分布式事务]] — 事务消息的本质
+- [[Rebalancing (再平衡)|再平衡]] — Consumer 重平衡的本质

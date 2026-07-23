@@ -14,3 +14,9 @@
 		2. 数据库：Log Buffer (Redo Log)
 		3. 高性能网络库：**Netty(PooledDirectByteBuf)/ Disruptor(RingBuffer)**
 
+---
+## 🔗 关联笔记
+- [[Double Buffering (双重缓冲)]] — 缓冲模式的进阶：双缓冲交换引用
+- [[netty]] — Netty 中 Buffering & Pooling 的综合运用
+- [[RocketMq持久化-commitlog中的优化]] — TransientStorePool 的实战应用
+- [[分布式存储核心概念辨析手册]] — 刷盘策略中的缓冲机制

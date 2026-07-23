@@ -14,8 +14,8 @@ status: 🟢 掌握
 ### 🚀 优化后的 Brag Document：RocketMQ NameServer 架构设计
 
 #### 1. 第一性原理 (The "Why" & "How")
-- **底层机制**：[[Read-Write Locking (读写分离锁)]]、[[Atomic Reference Swap (原子引用切换)]]、**[[Eventual Consistency (最终一致性)]]**。
-- **设计哲学**：基于 **[[Share Nothing (无共享架构)]]** 的 AP 模型。其核心理念是：**“通过客户端的‘聪明’（重试机制）来换取服务端的‘极简’（高可用）。”**
+- **底层机制**：[[Read-Write Locking (读写分离锁)|读写分离锁]]、[[Atomic Reference Swap (原子引用切换)|原子引用切换]]、**[[Eventual Consistency (最终一致性)|最终一致性]]**。
+- **设计哲学**：基于 **[[Share Nothing (无共享架构)|Share Nothing]]** 的 [[AP System (AP 系统)|AP 模型]]。其核心理念是：**“通过客户端的‘聪明’（重试机制）来换取服务端的‘极简’（高可用）。”**
 - **关键细节流转**：
     - **内存模型**：维护 5 个非线程安全的 `HashMap` 作为路由表。
     - **原子快照**：通过全局 `ReentrantReadWriteLock` 确保跨 5 个 Map 更新时的**逻辑原子性**。
@@ -27,8 +27,8 @@ status: 🟢 掌握
 
 | 维度 | RocketMQ NameServer | Zookeeper (Kafka 旧版) | Nacos (主流) |
 | :--- | :--- | :--- | :--- |
-| **一致性模型** | **AP** (最终一致性) | **CP** (强一致性) | **AP+CP** (双模) |
-| **数据同步** | **无同步** (Share-Nothing) | **ZAB 协议** (全量同步) | **Distro / Raft** 协议 |
+| **一致性模型** | **[[AP System (AP 系统)|AP]]** ([[Eventual Consistency (最终一致性)|最终一致性]]) | **[[CP System (CP 系统)|CP]]** ([[Strong Consistency & Linearizability (强一致性与线性化)|强一致性]]) | **AP+CP** (双模) |
+| **数据同步** | **无同步** ([[Share Nothing (无共享架构)|Share-Nothing]]) | **ZAB 协议** (全量同步) | **Distro / Raft** 协议 |
 | **运维压力** | 极低，扩容即用 | 高，存在脑裂与选举风险 | 中，功能丰富导致配置复杂 |
 | **结论** | 牺牲秒级一致性，换取**无限水平扩展**与**极高可用性**。 | 保证一致性，但在万级 Topic 下 **ZK 会成为性能瓶颈**。 | 适合通用微服务，但作为消息底座显得较重。 |
 
@@ -54,4 +54,16 @@ status: 🟢 掌握
 3.  **强化“化繁为简”的逻辑**：
     *   在面试中，一定要强调：**“为什么阿里不用 ZK？”** 答出：**“为了去掉 ZK 选举导致的集群不可用风险，将分布式一致性难题通过重试机制降级为单机缓存问题。”** 这是一个非常漂亮的架构师思维。
 
-这份修改后的 Brag Document 已经具备了 **“降维打击”** 的力量。建议你存入 Obsidian，并根据这个逻辑准备面试时的自我介绍。加油！
+这份修改后的 Brag Document 已经具备了 **"降维打击"** 的力量。建议你存入 Obsidian，并根据这个逻辑准备面试时的自我介绍。加油！
+
+---
+## 🔗 关联笔记
+- [[中心化控制架构与smart client架构]] — NameServer 在架构全景中的定位（联邦注册+Smart Client）
+- [[控制面 vs 数据面]] — NameServer 作为 AP 控制面的设计哲学
+- [[本质词汇表]] — Share Nothing、原子引用切换、读写分离锁、最终一致性
+- [[分布式设计术语]] — 与 ZK/Nacos 的对比框架
+- [[读rocketMq源码]] — NameServer 源码阅读指南（RouteInfoManager）
+- [[中间件的读写流程]] — NameServer 在读写流程中的角色
+- [[Eventual Consistency (最终一致性)|最终一致性]] — NameServer 的一致性模型
+- [[AP System (AP 系统)|AP 系统]] — NameServer 的架构选择
+- [[Failover (故障转移)|Failover]] — 客户端的故障转移机制

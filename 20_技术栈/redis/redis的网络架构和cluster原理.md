@@ -1,12 +1,12 @@
 ### 第一部分：Redis 网络架构（单机高性能的秘密）
 
-很多初级工程师认为“Redis 是单线程的”。作为资深人士，你必须精确地描述：**Redis 的网络模型经历了从“纯单线程”到“多线程 IO”的演变。**
+很多初级工程师认为"Redis 是单线程的"。作为资深人士，你必须精确地描述：**Redis 的网络模型经历了从"纯单线程"到"多线程 IO"的演变。**
 
 #### 1. 核心原理：IO 多路复用 (IO Multiplexing)
 
-这是 Redis 高性能的基石。Redis 不会为每个连接开一个线程（那样 Context Switch 会杀得 CPU 只有 50% 利用率），而是利用操作系统提供的 **epoll (Linux)** / **kqueue (BSD/Mac)** 机制。
+这是 Redis 高性能的基石。Redis 不会为每个连接开一个线程（那样 Context Switch 会杀得 CPU 只有 50% 利用率），而是利用操作系统提供的 **epoll (Linux)** / **kqueue (BSD/Mac)** 机制。
 
-- **Reactor 模式：** Redis 是典型的 **Event Loop (事件循环)** 架构。
+- **Reactor 模式：** Redis 是典型的 [[Reactor Pattern (Reactor 模型)|Event Loop (事件循环)]] 架构。
     
 - **流程：**
     
@@ -19,7 +19,7 @@
 
 #### 2. Redis 4.0/5.0：单 Reactor 单线程
 
-- **架构：** 接收连接、读取 Socket、解析命令、执行内存操作、写回 Socket，**全都在一个主线程里串行完成**。
+- **架构：** 接收连接、读取 Socket、解析命令、执行内存操作、写回 Socket，**全都在一个主线程里串行完成**。
     
 - **为什么快？**
     
@@ -29,24 +29,24 @@
         
     - 没有锁竞争（不需要考虑并发安全）。
         
-- **瓶颈：** **CPU 不是瓶颈，网络 IO 才是。** 当 Value 很大（比如 100KB），主线程在 write() 发送数据时，会占用大量 CPU 时间，导致后面的请求排队。
+- **瓶颈：** **CPU 不是瓶颈，网络 IO 才是。** 当 Value 很大（比如 100KB），主线程在 `write()` 发送数据时，会占用大量 CPU 时间，导致后面的请求排队。
     
 
 #### 3. Redis 6.0+：单 Reactor 多线程 (IO Threading)
 
-这是重大变革。为了解决网络 IO 的瓶颈，Redis 引入了 **多线程处理网络读写**，但**命令执行依然是单线程**。
+这是重大变革。为了解决网络 IO 的瓶颈，Redis 引入了 **多线程处理网络读写**，但**命令执行依然是单线程**。
 
 - **架构流程：**
     
-    1. **Main Thread:** 获取活跃的 Socket 连接。
+    1. **Main Thread:** 获取活跃的 Socket 连接。
         
-    2. **IO Threads (多线程):** 并行地从 Socket **读取**数据，并**解析**命令。（此时主线程忙别的，或等待）。
+    2. **IO Threads (多线程):** 并行地从 Socket **读取**数据，并**解析**命令。（此时主线程忙别的，或等待）。
         
-    3. **Main Thread:** 等大家读完了，**串行执行命令**（SET/GET...）。**注意：这里依然是原子的，不需要锁！**
+    3. **Main Thread:** 等大家读完了，**串行执行命令**（SET/GET...）。**注意：这里依然是原子的，不需要锁！**
         
-    4. **IO Threads (多线程):** 并行地把结果 **写入** Socket 发给客户端。
+    4. **IO Threads (多线程):** 并行地把结果 **写入** Socket 发给客户端。
         
-- **总结：** **“计算单线程，IO 多线程”**。既保留了无锁的优势，又吃满了网卡带宽。
+- **总结：** **“计算单线程，IO 多线程”**。既保留了无锁的优势，又吃满了网卡带宽。
     
 
 ---
@@ -57,7 +57,7 @@
 
 #### 1. 拓扑结构：全网状 (Full Mesh)
 
-- **架构：** 如果集群有 N 个节点，每个节点都和其他 N-1 个节点保持 TCP 长连接。
+- **架构：** 如果集群有 N 个节点，每个节点都和其他 N-1 个节点保持 TCP 长连接。
     
 - **端口：**
     
@@ -65,16 +65,16 @@
         
     - 16379 (6379+10000): **Cluster Bus (集群总线)** 端口。
         
-- **通信内容：** 专门跑 **Gossip 协议**。
+- **通信内容：** 专门跑 **[[Gossip Protocol (Gossip 协议)|Gossip 协议]]**。
     
 
 #### 2. 数据分片：Hash Slot (哈希槽)
 
-Redis Cluster 没有用一致性哈希，而是用了 **Hash Slot**。
+Redis Cluster 没有用[[Consistent Hashing (一致性哈希)|一致性哈希]]，而是用了 **Hash Slot**。
 
-- **总量：** **16384** 个槽（0 ~ 16383）。
+- **总量：** **16384** 个槽（0 ~ 16383）。
     
-- **算法：** Slot = CRC16(key) % 16384。
+- **算法：** Slot = CRC16(key) % 16384。
     
 - **为什么是 16384？（面试高频）**
     
@@ -89,7 +89,7 @@ Redis Cluster 没有用一致性哈希，而是用了 **Hash Slot**。
 
 #### 3. 客户端路由：MOVED 与 ASK
 
-这是 Smart Client 的核心逻辑。
+这是 [[Smart Client vs. Dumb Client (智能客户端 vs. 哑客户端)|Smart Client]] 的核心逻辑。
 
 - **MOVED (永久重定向):**
     
@@ -110,20 +110,30 @@ Redis Cluster 没有用一致性哈希，而是用了 **Hash Slot**。
     - 客户端行为：**只针对这一次请求**去访问 Node B（先发 ASKING 命令，再发 GET）。**不更新**本地路由表。
         
 
-#### 4. 故障发现与 Failover (Gossip 的力量)
+#### 4. 故障发现与 [[Failover (故障转移)|Failover]] (Gossip 的力量)
 
 没有 ZK，怎么知道谁挂了？
 
-1. **PFAIL (Subjective Fail - 主观下线):** Node A 给 Node B 发 Ping，B 超时没回。A 在心里给 B 打个标记：“我觉得 B 挂了”。
+1. **PFAIL (Subjective Fail - 主观下线):** Node A 给 Node B 发 Ping，B 超时没回。A 在心里给 B 打个标记："我觉得 B 挂了"。
     
-2. **Gossip 传播:** A 遇到 C，告诉 C：“我觉得 B 挂了”。
+2. **[[Gossip Protocol (Gossip 协议)|Gossip]] 传播:** A 遇到 C，告诉 C："我觉得 B 挂了"。
     
-3. **FAIL (Objective Fail - 客观下线):** 当集群中 **半数以上的主节点** 都告诉 A 说“我也觉得 B 挂了”，A 就会正式广播：**“B 确诊已挂！”**。
+3. **FAIL (Objective Fail - 客观下线):** 当集群中 **半数以上的主节点** 都告诉 A 说"我也觉得 B 挂了"，A 就会正式广播：**"B 确诊已挂！"**。
     
-4. **从节点选举:** B 的从节点们（Slave B1, Slave B2）开始竞选。
+4. **从节点选举:** B 的从节点们（Slave B1, Slave B2）开始竞选。
     
-    - 利用 Raft 类似的协议（Epoch 纪元），数据最新的 Slave 优先发起投票。
+    - 利用 [[Consensus Election (共识选举)|Raft 类似的协议]]（Epoch 纪元），数据最新的 Slave 优先发起投票。
         
     - 其他 Master 节点进行投票。
         
     - 票数过半，B1 当选新 Master，接管 Slot。
+
+---
+## 🔗 关联笔记
+- [[redis读写微观全流程]] — Redis 写请求的微观全链路（连接→执行→持久化→复制→响应）
+- [[redis读写brag]] — Redis 读写全链路的 brag 文档版
+- [[Reactor Pattern (Reactor 模型)|Reactor 模型]] — Redis 单 Reactor 到多线程 IO 的演进
+- [[中心化控制架构与smart client架构]] — Redis Cluster 在架构全景中的定位
+- [[数据复制和数据分片]] — Hash Slot 分片与主从复制的结合
+- [[中间件的读写流程]] — Redis 与其他中间件读写流程的对比
+- [[秒杀与库存]] — Redis Lua 在库存扣减中的实战

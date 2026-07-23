@@ -3,7 +3,7 @@
 - **分析**：
     - **同步刷盘 (双1)**：innodb_flush_log_at_trx_commit=1 + sync_binlog=1。保证单机掉电不丢数据。
         
-    - **半同步复制 (Semi-Sync)**：保证主库硬件彻底损坏（硬盘坏了）时，数据至少在从库有一份。  
+    - **半同步复制 (Semi-Sync)**：保证主库硬件彻底损坏（硬盘坏了）时，数据至少在从库有一份。参考[[日志复制]]。
 - **性能焦虑**：
     - 你可能会担心：“这得多慢啊？”    
     - **救世主**：**Group Commit（组提交）**。  
@@ -31,36 +31,36 @@
     ↓
 MySQL 网络线程 (Server Layer)
     ↓
-    [M] 读取到 net_buffer -> 解析器 -> 优化器 -> 执行计划
+    [M] 读取到 net_buffer → 解析器 → 优化器 → 执行计划
     ↓
 InnoDB 引擎层 (Engine Layer - MTR Start)
     ├─ [D] (若未命中) 读取数据页到 Buffer Pool (Random Read)
     ├─ [M] 加行锁 (Row Lock)
-    ├─ [M] 写 Undo Log (为了回滚)
-    ├─ [M] 写 Redo Log Buffer (为了恢复)
-    └─ [M] 修改 Buffer Pool 数据页 (变为脏页)
+    ├─ [M] 写 Undo Log (为了回滚) — 参考[[MVCC (多版本并发控制)|MVCC]]
+    ├─ [M] 写 Redo Log Buffer (为了恢复) — 参考[[WAL (预写式日志)|WAL]]
+    └─ [M] 修改 Buffer Pool 数据页 (变为脏页) — 参考[[B+Tree (B+ 树)|B+ 树]]
     ↓
-事务提交 (Commit - 2PC Start)
+事务提交 (Commit - [[Two-Phase Commit (两阶段提交：2PC)|2PC]] Start)
     │
     ├─ Phase 1: Redo Log Prepare
-    │   ├─ [D] Redo Log Buffer -> 磁盘 ib_logfile (Sequential Write)
+    │   ├─ [D] Redo Log Buffer → 磁盘 ib_logfile (Sequential Write)
     │   │  (注: 若配置O_DIRECT则绕过Page Cache, 否则fsync强制落盘)
     │   └─ 标记事务状态为 PREPARE
     │
     ├─ Phase 2: Binlog Write & Sync
-    │   ├─ [C] Binlog Cache -> OS Page Cache (write系统调用)
-    │   └─ [D] OS Page Cache -> 磁盘 binlog file (fsync, Sequential Write)
+    │   ├─ [C] Binlog Cache → OS Page Cache (write系统调用)
+    │   └─ [D] OS Page Cache → 磁盘 binlog file (fsync, Sequential Write)
     │
     ├─ Phase 2.5: Semi-Sync Wait (半同步复制)
     │   │  (主库线程在此阻塞，等待从库ACK)
     │   │
-    │   ├─ [N] 主库发送 Binlog Event -> 从库
+    │   ├─ [N] 主库发送 Binlog Event → 从库
     │   │       ↓
     │   │      [N] 从库 IO 线程接收
     │   │       ↓
     │   │      [D] 从库写入 Relay Log 并 fsync
     │   │       ↓
-    │   └─ [N] 从库返回 ACK -> 主库
+    │   └─ [N] 从库返回 ACK → 主库
     │   │
     │   └─ 主库收到 ACK (或超时降级)
     │
@@ -74,7 +74,7 @@ InnoDB 引擎层 (Engine Layer - MTR Start)
     [N] 返回 "OK" 给客户端
     ↓
 后台异步任务 (Background Threads)
-    ├─ [D] Page Cleaner: 脏页(Buffer Pool) -> Double Write -> 数据文件(.ibd)
+    ├─ [D] Page Cleaner: 脏页(Buffer Pool) → Double Write → 数据文件(.ibd)
     ├─ [M/D] Purge Thread: 清理旧版本 Undo Log
     └─ [N] Dump Thread: 继续给其他异步从库传数据
 
@@ -84,7 +84,7 @@ InnoDB 引擎层 (Engine Layer - MTR Start)
         
     - **写**：在事务提交那一刻，主要是**顺序磁盘 IO**（写 Redo/Binlog）。真正的修改数据文件（随机写）是后台异步做的。
         
-    - 结论：这就是为什么 MySQL 写入性能通常比复杂查询性能稳定的原因——WAL 把随机写变成了顺序写。
+    - 结论：这就是为什么 MySQL 写入性能通常比复杂查询性能稳定的原因——[[WAL (预写式日志)|WAL]] 把随机写变成了顺序写。参考[[写放大 vs 读放大]]。
         
 2. **Change Buffer (写缓冲) 的妙用**：
     
@@ -104,4 +104,6 @@ InnoDB 引擎层 (Engine Layer - MTR Start)
         
     - 所以，InnoDB 先把脏页 Copy 到内存中的 Double Write Buffer，先顺序写到磁盘共享表空间，然后再写到原本的数据文件。
         
-    - 作用：保证数据页的可靠性，牺牲了一点点 IO 性能。
+    - 作用：保证数据页的可靠性，牺牲了一点点 IO 性能。参考[[分布式存储核心概念辨析手册]]。
+
+另外，MySQL 架构本身没有分布式控制面，为了实现自动容灾，业界通常使用 MHA、Orchestrator 等 [[控制面 vs 数据面|控制面]]。参考[[中间件的读写流程]]。

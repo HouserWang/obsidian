@@ -1,4 +1,4 @@
-除了[[reactor模型]] 和 Epoll 之外，Netty 在代码层面做了极致的优化。以下是 4 个核心设计。
+除了[[Reactor Pattern (Reactor 模型)|Reactor 模型]] 和 Epoll 之外，Netty 在代码层面做了极致的优化。以下是 4 个核心设计。
 
 #### 1. Zero Copy ([[零拷贝]]) 的极致运用
 
@@ -74,3 +74,11 @@ Netty 的零拷贝体现在三个维度：
     - 当你 handle.recycle(obj) 时，对象被压入栈；get() 时弹出。
         
 - **大厂实践：** 在业务代码中，除非是每
+
+---
+## 🔗 关联笔记
+- [[零拷贝]] — Netty 零拷贝的三个维度（OS/JVM/逻辑层）
+- [[Reactor Pattern (Reactor 模型)|Reactor 模型]] — Netty 的主从 Reactor 架构
+- [[Buffering (缓冲)& Pooling (池化)|池化]] — 内存池化的核心思想
+- [[redis的网络架构和cluster原理]] — Redis 与 Netty 网络模型的对比
+- [[pipline和stream]] — Netty 的 Pipeline 请求模型
